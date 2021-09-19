@@ -52,7 +52,8 @@ public class Main {
     }
 
     public static void printMatrix(int[][] matrix){
-        int m
+        int m= matrix.length;
+        int n= matrix[0].length;
         for (int i=0;i<m; i++){
             for (int k=0; k<n; k++){
                 System.out.print(matrix[i][k] + " ");
@@ -76,9 +77,10 @@ public class Main {
         }
 
         System.out.println("\nBefore a life..");
-
+        printMatrix(matrix);
 
         System.out.println("\nAfter a life..");
+        printMatrix(afterLife(matrix));
 
     }
 }
