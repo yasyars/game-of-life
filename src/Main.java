@@ -14,5 +14,13 @@ public class Main {
             }
             matrix[i] = array;
         }
+
+
+        for (int i=0;i<m; i++){
+            for (int k=0; k<n; k++){
+                System.out.print(matrix[m-1][n-1] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 }
