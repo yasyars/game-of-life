@@ -77,12 +77,14 @@ public class Grid {
         }
 
         if (i<this.row-1){
-            if (k<this.column-1) {
-                neighbour += this.cells[i+1][k+1];
-            }
             if (k>0){
                 neighbour += this.cells[i+1][k-1];
             }
+
+            if (k<this.column-1) {
+                neighbour += this.cells[i+1][k+1];
+            }
+
             neighbour += this.cells[i+1][k];
         }
 
