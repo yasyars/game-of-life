@@ -9,17 +9,56 @@ public class Main {
         for (int i=0;i<m; i++){
             for (int k=0; k<n; k++){
                 int neighbour = 0;
-                if (i>0 && k>0){
-                    neighbour+= initial[i-1][k-1];
-                    }
+                if (i>0 && k>0) {
+                    neighbour += initial[i - 1][k - 1];
                 }
-                if (i<)
 
+                if (i<m-1 && k<n-1) {
+                    neighbour += initial[i+1][k+1];
+                }
 
+                if (i>0 && k<n-1){
+                    neighbour += initial[i-1][k+1];
+                }
+
+                if (i<m-1 && k>0){
+                    neighbour += initial[i+1][k-1];
+                }
+
+                if (i>0){
+                    neighbour += initial[i-1][k];
+                }
+                if (k>0){
+                    neighbour += initial[i][k-1];
+                }
+                if (i<m-1){
+                    neighbour += initial[i+1][k];
+                }
+                if(k<n-1){
+                    neighbour += initial[i][k+1];
+                }
+
+                if (neighbour<2 || neighbour>3){
+                    newMatrix[i][k]=0;
+                }else if (neighbour==3){
+                    newMatrix[i][k]=1;
+                }else{//if 2
+                    newMatrix[i][k]= initial[i][k];
+                }
             }
         }
 
         return newMatrix;
+    }
+
+    public static void printMatrix(int[][] matrix){
+        int m
+        for (int i=0;i<m; i++){
+            for (int k=0; k<n; k++){
+                System.out.print(matrix[i][k] + " ");
+            }
+            System.out.print("\n");
+        }
     }
 
     public static void main(String args[]){
@@ -38,12 +77,7 @@ public class Main {
 
         System.out.println("\nBefore a life..");
 
-        for (int i=0;i<m; i++){
-            for (int k=0; k<n; k++){
-                System.out.print(matrix[i][k] + " ");
-            }
-            System.out.print("\n");
-        }
+
         System.out.println("\nAfter a life..");
 
     }
