@@ -1,7 +1,36 @@
 import java.util.Scanner;
 
-public class Main {
-    public static int[][] afterLife(int[][] initial){
+class Grid{
+  private int row;
+  private int column;
+  private int[][] cells;
+
+  public Grid(int row, int column){
+      cells = new int[row][column];
+  }
+
+  public void populate(){
+      Scanner scan = new Scanner (System.in);
+
+      for (int i=0; i<this.row; i++){
+          int[] array = new int[this.column];
+          for (int k=0; k<this.column; k++){
+              array[k] = scan.nextInt();
+          }
+          this.cells[i] = array;
+      }
+  }
+
+  public void print(){
+    for (int i=0;i<this.row; i++){
+        for (int k=0; k<this.column; k++){
+            System.out.print(this.cells[i][k] + " ");
+        }
+        System.out.print("\n");
+    }
+  }
+
+  public static int[][] afterLife(int[][] initial){
         int m= initial.length;
         int n= initial[0].length;
         int[][] newMatrix = new int[m][n];
@@ -50,34 +79,21 @@ public class Main {
 
         return newMatrix;
     }
+}
 
-    public static void printMatrix(int[][] matrix){
-        int m= matrix.length;
-        int n= matrix[0].length;
-        for (int i=0;i<m; i++){
-            for (int k=0; k<n; k++){
-                System.out.print(matrix[i][k] + " ");
-            }
-            System.out.print("\n");
-        }
-    }
+public class Main {
+
 
     public static void main(String args[]){
         Scanner scan = new Scanner (System.in);
         int m = scan.nextInt();
         int n = scan.nextInt();
 
-        int[][] matrix = new int[m][n];
-        for (int i=0; i<m; i++){
-            int[] array = new int[n];
-            for (int k=0; k<n; k++){
-                array[k] = scan.nextInt();
-            }
-            matrix[i] = array;
-        }
+        Grid lifeGrid = new Grid(m,n);
+        lifeGrid.populate();
 
         System.out.println("\nBefore a life..");
-        printMatrix(matrix);
+        lifeGrid.print();
 
         System.out.println("\nAfter a life..");
         printMatrix(afterLife(matrix));
