@@ -45,35 +45,7 @@ public class Grid {
 
         for (int i=0;i<this.row; i++){
             for (int k=0; k<this.column; k++){
-                int neighbour = 0;
-                if (i>0 && k>0) {
-                    neighbour += this.cells[i - 1][k - 1];
-                }
-
-                if (i<this.row-1 && k<this.column-1) {
-                    neighbour += this.cells[i+1][k+1];
-                }
-
-                if (i>0 && k<this.column-1){
-                    neighbour += this.cells[i-1][k+1];
-                }
-
-                if (i<this.row-1 && k>0){
-                    neighbour += this.cells[i+1][k-1];
-                }
-
-                if (i>0){
-                    neighbour += this.cells[i-1][k];
-                }
-                if (k>0){
-                    neighbour += this.cells[i][k-1];
-                }
-                if (i<this.row-1){
-                    neighbour += this.cells[i+1][k];
-                }
-                if(k<this.column-1){
-                    neighbour += this.cells[i][k+1];
-                }
+                int neighbour = countNeighbour(i,k);
 
                 if (neighbour<2 || neighbour>3){
                     newCells[i][k]=0;
@@ -85,5 +57,39 @@ public class Grid {
             }
         }
         populateWithArray(newCells);
+    }
+
+    public int countNeighbour(int i, int k){
+        int neighbour = 0;
+
+        if (i>0){
+            if (k>0){
+                neighbour += this.cells[i - 1][k - 1];
+            }
+            if (k<this.column-1){
+                neighbour += this.cells[i-1][k+1];
+            }
+            neighbour += this.cells[i-1][k];
+        }
+
+        if (k>0){
+            neighbour += this.cells[i][k-1];
+        }
+
+        if (i<this.row-1){
+            if (k<this.column-1) {
+                neighbour += this.cells[i+1][k+1];
+            }
+            if (k>0){
+                neighbour += this.cells[i+1][k-1];
+            }
+            neighbour += this.cells[i+1][k];
+        }
+
+        if(k<this.column-1){
+            neighbour += this.cells[i][k+1];
+        }
+
+        return neighbour;
     }
 }
